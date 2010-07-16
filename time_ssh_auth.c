@@ -149,12 +149,20 @@ RETRY:
             }
 
             timings[i] = compute_delay(start_time, stop_time);
-            user_msg(username, MSG_TIME, "%llu", timings[i]);
+            if(password) {
+                user_msg(username, MSG_TIME, "%-16s %llu", password, timings[i]);
+            } else {
+                user_msg(username, MSG_TIME, "%llu", timings[i]);
+            }
             (void)fflush(stdout);
             (void)sleep(1);
         }
         if(0 != timings[0]) { /* not skipped */
-            user_msg(username, MSG_MEDIAN, "%llu", median(timings, iterations));
+            if(password) {
+                user_msg(username, MSG_MEDIAN, "%-16s %llu", password, median(timings, iterations));
+            } else {
+                user_msg(username, MSG_MEDIAN, "%llu", median(timings, iterations));
+            }
         }
 
     }
