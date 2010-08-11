@@ -86,7 +86,7 @@ RETRY:
              * iteration since they are associated with the session. */
             session = ssh_new();
             ssh_options_set(session, SSH_OPTIONS_HOST, hostname);
-            ssh_options_set(session, SSH_OPTIONS_USER, hostname);
+            ssh_options_set(session, SSH_OPTIONS_USER, username);
             if(id_file) {
                 public_key = publickey_from_file(session, id_file_pub, NULL);
                 if(NULL == public_key) {
